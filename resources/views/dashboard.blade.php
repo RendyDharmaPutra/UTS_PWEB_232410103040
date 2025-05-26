@@ -7,7 +7,7 @@
         <div class="p-6 flex flex-col gap-4 w-full md:max-w-md md:rounded bg-white">
 
             <h1 class="font-semibold text-xl">
-                Selamat datang, {{ request()->query('username') }}
+                Selamat datang, {{ request()->query('username') ?? 'Pengguna' }}
             </h1>
 
             <form action="{{ route('dashboard', ['username' => request()->query('username')]) }}" method="POST"

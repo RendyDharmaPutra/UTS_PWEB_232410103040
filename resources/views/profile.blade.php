@@ -11,7 +11,7 @@
                         alt="Avatar">
                 </div>
             </div>
-            <h2 class="font-semibold  text-2xl text-gray-800">{{ request()->query('username') }}</h2>
+            <h2 class="font-semibold  text-2xl text-gray-800">{{ request()->query('username') ?? 'Pengguna' }}</h2>
 
             <div class="mt-6 flex justify-center gap-4">
                 <a href="{{ route('dashboard', ['username' => request()->query('username')]) }}" class="btn btn-ghost">Kembali

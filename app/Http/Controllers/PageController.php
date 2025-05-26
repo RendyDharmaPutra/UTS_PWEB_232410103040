@@ -17,11 +17,6 @@ class PageController extends Controller
     public function dashboardPage(Request $request) {
         $needs = Pengelolaan::all();
 
-
-        if($redirect = $this->isUsernameNull($request)) {
-            return $redirect;
-        }
-
         $remaining = null;
 
         if ($request->isMethod('post')) {
@@ -46,10 +41,6 @@ class PageController extends Controller
     }
 
     public function profilePage(Request $request) {
-        if($redirect = $this->isUsernameNull($request)) {
-            return $redirect;
-        }
-
         return view('profile');
     }
 
@@ -67,13 +58,5 @@ class PageController extends Controller
 
     public function logoutAction() {
         return redirect('login');
-    }
-
-    public function isUsernameNull(Request $request) {
-        if(!$request->query('username')) {
-            return redirect('login');
-        };
-
-        return null;
     }
 }
