@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PengelolaanController;
 
 Route::get('/', function () {
     return redirect('dashboard');
@@ -9,7 +10,7 @@ Route::get('/', function () {
 
 Route::get('/login', [PageController::class, 'loginPage'])->name('login');
 Route::match(['get', 'post'], '/dashboard', [PageController::class, 'dashboardPage'])->name('dashboard');
-Route::get('/pengelolaan', [PageController::class, 'pengelolaanPage'])->name('pengelolaan');
+Route::resource('/pengelolaan', PengelolaanController::class);
 Route::get('/profile', [PageController::class, 'profilePage'])->name('profile');
 
 Route::post('/login', [PageController::class, 'loginAction'])->name('login');

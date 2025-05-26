@@ -9,8 +9,8 @@
             <ul class="space-y-3">
                 @foreach ($needs as $item)
                     <li class="p-4 flex justify-between bg-gray-100 rounded-lg">
-                        <h6>{{ $item['name'] }}</h6>
-                        <p class="font-semibold text-right">Rp{{ number_format($item['cost'], 0, ',', '.') }}</p>
+                        <h6>{{ $item->name }}</h6>
+                        <p class="font-semibold text-right">Rp{{ number_format($item->cost, 0, ',', '.') }}</p>
                     </li>
                 @endforeach
             </ul>

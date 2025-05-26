@@ -3,23 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Pengelolaan;
+
 
 class PageController extends Controller
 {
-
-    private $needs = [
-        ['name' => 'Makan', 'cost' => 1500000],
-        ['name' => 'Transportasi', 'cost' => 500000],
-        ['name' => 'Listrik & Air', 'cost' => 300000],
-        ['name' => 'Internet', 'cost' => 250000],
-        ['name' => 'Belanja Bulanan', 'cost' => 700000],
-    ];
 
     public function loginPage() {
         return view('login');
     }
 
     public function dashboardPage(Request $request) {
+        $needs = Pengelolaan::all();
+
+
         if($redirect = $this->isUsernameNull($request)) {
             return $redirect;
         }
@@ -28,7 +26,7 @@ class PageController extends Controller
 
         if ($request->isMethod('post')) {
             $amount = $request->input('amount');
-            $totalNeeds = collect($this->needs)->sum('cost');
+            $totalNeeds = collect($needs)->sum('cost');
             $remaining = $amount - $totalNeeds;
         }
 
@@ -39,7 +37,12 @@ class PageController extends Controller
     }
 
     public function pengelolaanPage() {
-        return view('pengelolaan', ['needs' => $this->needs ]);
+        // $needs = DB::select('select * from pengelolaan');
+        // $needs = DB::table('pengelolaan')->get();
+        $needs = Pengelolaan::all();
+
+
+        return view('pengelolaan', compact('needs'));
     }
 
     public function profilePage(Request $request) {
